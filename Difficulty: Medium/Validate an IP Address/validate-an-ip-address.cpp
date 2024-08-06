@@ -9,32 +9,19 @@ IP string is valid else return 0
 You are required to complete this method */
 class Solution {
   public:
-    int isValid(string str) {
+    bool isValid(string &str) {
         // code here
-           vector<string>v;
-        string curr = "";
-        for(auto ch:str){
-            if(ch == '.'){
-                v.push_back(curr);
-                curr = "";
+        vector<string> vt(4);
+        int x{0},temp{0};
+        for(int i=0;i<str.size();i++){
+            if(str[i]=='.'){
+                x++;
+                continue;
             }
-            else{
-                if(!isdigit(ch))return false;
-                curr.push_back(ch);
-            }
+            vt[x].push_back(str[i]);
         }
-        if(curr.size() > 0){
-            v.push_back(curr);
-        }
-        if(v.size() !=4)return false;
-        for(auto str:v){
-            long long int x = 0;
-            for(int i=0;i<str.size();i++){
-                x = 10*x + (str[i]-'0');
-            }
-            if(x > 255){
-                return false;
-            }
+        for(int i=0;i<4;i++){
+            if(stoi(vt[i])<0 || stoi(vt[i])>255) return false;
         }
         return true;
     }
