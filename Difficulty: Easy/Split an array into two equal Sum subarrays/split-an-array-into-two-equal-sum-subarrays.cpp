@@ -7,18 +7,10 @@ using namespace std;
 class Solution {
   public:
     bool canSplit(vector<int>& arr) {
-        // code here
         int left=0,right=arr.size()-1,suml=arr[left],sumr=arr[right];
         while(left<right){
             if((left==right-1) && (sumr==suml)) return true;
-            if(suml<sumr){
-                left++;
-                suml+=arr[left];
-            }
-            else{
-                right--;
-                sumr+=arr[right];
-            }
+            suml<sumr?suml+=arr[++left]:sumr+=arr[--right];
         }
         return false;
     }
