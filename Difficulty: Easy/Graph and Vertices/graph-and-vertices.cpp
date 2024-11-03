@@ -8,7 +8,8 @@ using namespace std;
 class Solution {
   public:
     long long count(int n) {
-        return (long long)pow(2,n*(n-1)/2);
+        // your code here
+        return pow(2,n*(n-1)/2);
     }
 };
 
@@ -21,7 +22,9 @@ int main() {
         cin >> n;
         Solution ob;
         cout << ob.count(n) << "\n";
-    }
+    
+cout << "~" << "\n";
+}
 
     return 0;
 }
