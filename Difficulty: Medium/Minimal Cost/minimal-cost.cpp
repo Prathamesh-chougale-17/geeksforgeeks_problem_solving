@@ -7,14 +7,18 @@ using namespace std;
 class Solution {
   public:
     int minimizeCost(int k, vector<int>& arr) {
-         int n=arr.size();
-        vector<int>dp(n,1e9);
+        // Code here
+        int n=arr.size();
+        vector<int> dp(n);
         dp[0]=0;
-        for(int i=0;i<n;i++){
-            for(int j=i-k;j<i;j++){
-                if(j>=0)
-                dp[i]=min(dp[i],dp[j]+abs(arr[i]-arr[j]));
+        for(int i=1;i<n;i++){
+            int mini = INT_MAX;
+            for(int j=1;j<=k;j++){
+                if(i>=j){
+                    mini=min(mini,dp[i-j]+abs(arr[i]-arr[i-j]));
+                }
             }
+            dp[i]=mini;
         }
         return dp[n-1];
     }
@@ -41,6 +45,7 @@ int main() {
         Solution obj;
         int res = obj.minimizeCost(k, arr);
         cout << res << endl;
+        cout << "~" << endl;
         // string tl;
         // getline(cin, tl);
     }
